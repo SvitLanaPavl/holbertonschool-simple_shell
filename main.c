@@ -16,13 +16,13 @@ int main (int ac, char **argv)
 	const char *delim = " \n";
 	int num_token = 0;
 	char *token;
-	int i;
+	int i, ext = 1;
 
 	/*declaring void variable - temporarily not use ac yet*/
 	(void)ac;
 
 	/*create a loop for the shell's prompt*/
-	while (1)
+	while (ext == 1)
 	{
 		printf("%s", prompt);
 		nchars_read = getline(&lineptr, &n, stdin);
@@ -62,6 +62,12 @@ int main (int ac, char **argv)
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
+		if (strcmp(argv[0], "exit") == 0)
+		{
+			ext = 0;
+			free(lineptr_copy), free(lineptr), free(argv);
+			return (0);
+		}
 		/*execute the command*/
 		execmd(argv);
 	}
