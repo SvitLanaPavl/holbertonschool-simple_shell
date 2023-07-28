@@ -17,6 +17,7 @@ int main (int ac, char **argv)
 	int num_token = 0;
 	char *token;
 	int i, ext = 1;
+	pid_t pid;
 
 	/*declaring void variable - temporarily not use ac yet*/
 	(void)ac;
@@ -69,7 +70,12 @@ int main (int ac, char **argv)
 			return (0);
 		}
 		/*execute the command*/
+		pid = fork();
+		if (pid == 0)
 		execmd(argv);
+		
+		else
+		continue;
 	}
 	/*free up allocated memory*/
 	free(lineptr_copy);
