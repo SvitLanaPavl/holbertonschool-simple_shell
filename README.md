@@ -27,7 +27,7 @@ and compile the following way
 `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
 
 ## **_How to use_** ##
-To start using the program, type `./hsh`. You will see the prompt `($)` which indicates that you can type the command. 
+To start using the program, type `./hsh`. You will see the prompt `($)` which indicates that it is ready to receive the command. 
 The commands can be *built-ins*, like
 
 `cd` - change directory
