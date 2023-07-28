@@ -1,6 +1,6 @@
 # Simple Shell #
 
-<img src='https://guideposts.org/wp-content/uploads/2017/04/blog_shell_1540-1024x576.jpg.webp' alt='simple-shell'/>
+<img src='https://guideposts.org/wp-content/uploads/2017/04/blog_shell_1540-1024x576.jpg.webp' width="500" height="400" alt='simple-shell'/>
 
 ## **_Introduction_** ##
 This is the program that allows a user to interact with a computer by running commands or programs.
