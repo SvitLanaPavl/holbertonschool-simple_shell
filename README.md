@@ -108,6 +108,7 @@ _strdup
 _strlen
 _strcpy
 _strcat
+_strcmp
 ```
 ## **_Files and their descriptions_** ##
 
