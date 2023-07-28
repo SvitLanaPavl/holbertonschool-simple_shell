@@ -3,7 +3,7 @@
 <img src='https://guideposts.org/wp-content/uploads/2017/04/blog_shell_1540-1024x576.jpg.webp' width="800" height="350" alt='simple-shell'/>
 
 ## **_Introduction_** ##
-This is the program that allows a user to interact with a computer by running commands or programs.
+This program is the recreation of the UNIX shell - a command line interpreter - that allows a user to interact with a computer by running commands or programs. The shell parses the commands and sends them to the operating system to perform.
 
 ## **_Description_** ##
 ### The shell should do the following: ###
