@@ -8,9 +8,4 @@
 #include <sys/stat.h>
 void execmd(char **argv);
 char *get_location(char *command);
-int _strlen(char *s);
-char *_strcat(char *dest, char *src);
-int _strcmp(char *s1, char *s2);
-char *_strcpy(char *dest, char *src);
-char *_strdup(char *str);
 #endif

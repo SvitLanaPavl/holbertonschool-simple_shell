@@ -117,7 +117,6 @@ _strcmp
 | main.h | prototypes of functions and structures |        
 | main.c | recreates a simple shell | 
 | shell.c | gets the path of the command file and executes it |
-| custom_funcs.c | recreated library functions |
 
 ## **_Authors_** ##
 
