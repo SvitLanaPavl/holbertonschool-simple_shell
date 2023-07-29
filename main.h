@@ -7,6 +7,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <signal.h>
+#include <sys/wait.h>
+
 void execmd(char **argv);
 char *get_location(char *command);
 #endif
