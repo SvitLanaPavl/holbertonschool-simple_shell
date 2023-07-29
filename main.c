@@ -7,7 +7,7 @@
  *
  * Return: 0 if success, -1 if not success
  */
-int main (int ac, char **argv)
+int main (int argc __attribute__((unused)), char **argv)
 {
 	char *prompt = "($) ";
 	char *lineptr = NULL, *lineptr_copy = NULL;
@@ -19,9 +19,6 @@ int main (int ac, char **argv)
 	int i, ext = 1;
 	int status;
 	pid_t pid;
-
-	/*declaring void variable - temporarily not use ac yet*/
-	(void)ac;
 
 	/*create a loop for the shell's prompt*/
 	while (ext == 1)
