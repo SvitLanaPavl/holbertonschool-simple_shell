@@ -11,4 +11,6 @@
 
 void execmd(char **argv);
 char *get_location(char *command);
+int get_num_token(char *lineptr);
+
 #endif
