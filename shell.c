@@ -36,7 +36,7 @@ char *get_location(char *command)
 				free(file_path);
 				path_token = strtok(NULL, ":");
 			}
-		}/*end while loop*/
+		} /*end while loop*/
 		free(path_copy);
 		if (stat(command, &buffer) == 0)
 			return (command);
@@ -45,7 +45,8 @@ char *get_location(char *command)
 	return (NULL);
 }
 
-/**execmd - get a command & find the path to this command & execute it
+/**
+ * execmd - get a command & find the path to this command & execute it
  * @argv: the arguments include command as the first element
  * Return: nothing
  */
