@@ -65,3 +65,31 @@ void execmd(char **argv)
 		}
 	}
 }
+
+/**
+ * get_num_token - get number of tokens
+ * @lineptr: line of command and path
+ *
+ * Return: number of tokens
+ */
+int get_num_token(char *lineptr)
+{
+	int i = 0, num_tokens;
+
+	if (lineptr == NULL)
+		return (0);
+	while (lineptr[i] == ' ')
+		i++;
+	num_tokens = 1;
+	for (; lineptr[i] != '\n'; i++)
+	{
+		if (lineptr[i] == ' ')
+		{
+			while (lineptr[i + 1] == ' ')
+				i++;
+			if (lineptr[i + 1] != '\0')
+				num_tokens++;
+		}
+	}
+	return (num_tokens);
+}

@@ -10,18 +10,15 @@
 int main (int argc __attribute__((unused)), char **argv)
 {
 	char *prompt = "($) ";
-	char *lineptr = NULL, *lineptr_copy = NULL;
+	char *lineptr = NULL, *token;
 	size_t n = 0;
 	ssize_t nchars_read;
 	const char *delim = " \n";
-	int num_token = 0;
-	char *token;
-	int i, ext = 1;
+	int num_token = 0, i, ext = 1;
 	int status;
 	pid_t pid;
 
-	/*create a loop for the shell's prompt*/
-	while (ext == 1)
+	while (ext == 1) /*create a loop for the shell's prompt*/
 	{
 		printf("%s", prompt);
 		nchars_read = getline(&lineptr, &n, stdin);
@@ -32,28 +29,9 @@ int main (int argc __attribute__((unused)), char **argv)
 			printf("Exiting shell....\n");
 			return (-1);
 		}
-		/*allocate space for a copy of the lineptr*/
-		lineptr_copy = malloc(sizeof(char) * nchars_read);
-		if (lineptr_copy == NULL)
-		{
-			perror("tsh: memory allocation error");
-			return (-1);
-		}
-		/*copy lineptr to lineptr_copy*/
-		strcpy(lineptr_copy, lineptr);
-		/***split the string(lineptr) into an array of word***/
-		/*calculate the total number of token*/
-		token = strtok(lineptr, delim);
-		while (token != NULL)
-		{
-			num_token++;
-			token = strtok(NULL, delim);
-		}
-		num_token++;
-		/*allocate space to hold the array of strings*/
-		argv = malloc(sizeof(char *) * num_token);
-		/*store each token in the argv array*/
-		token = strtok(lineptr_copy, delim);
+		num_token = get_num_token(lineptr); /*get number of token*/
+		argv = malloc(sizeof(char *) * num_token); /*allocat argv[]*/
+		token = strtok(lineptr, delim); /*store each token in argv[]*/
 		for (i = 0; token != NULL; i++)
 		{
 			argv[i] = malloc(sizeof(char) * strlen(token));
@@ -64,18 +42,15 @@ int main (int argc __attribute__((unused)), char **argv)
 		if (strcmp(argv[0], "exit") == 0)
 		{
 			ext = 0;
-			free(lineptr_copy), free(lineptr), free(argv);
+			free(lineptr), free(argv);
 			return (0);
 		}
-		/*execute the command*/
 		pid = fork();
 		if (pid == 0)
-			execmd(argv);
+			execmd(argv); /*execute command*/
 		else
 			wait(&status);
 	}
-	/*free up allocated memory*/
-	free(lineptr_copy);
 	free(lineptr);
 	return (0);
 }
