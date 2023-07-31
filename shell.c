@@ -12,7 +12,7 @@ char *get_location(char *command)
 	int command_length, directory_length;
 	struct stat buffer;
 
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	if (path)
 	{
 		path_copy = strdup(path);
@@ -62,6 +62,10 @@ void execmd(char **argv)
 		actual_command = get_location(command);
 		if (execve(actual_command, argv, NULL) == -1)
 		{
+			if (errno == ENOENT)
+			printf ("Command not found: %s\n", command);
+
+			else
 			perror("Error:");
 		}
 	}
@@ -93,4 +97,33 @@ int get_num_token(char *lineptr)
 		}
 	}
 	return (num_tokens);
+}
+/**
+ * _getenv - returns a unique character pointer for each environment variable
+ * Description: Searches the table of environment variables for an entry
+ * corresponding to name and returns a pointer to a buffer containing the
+ * current string value of name.
+ * @name: name
+ * Return: pointer to a buffer containing the current string value of name,
+ * or NULL if name not found
+ */
+char *_getenv(const char *name)
+{
+char *value = NULL;
+char **env = environ;
+
+while (*env)
+{
+if (strncmp(*env, name, strlen(name)) == 0)
+	{
+	value = strchr(*env, '=');
+	if (value)
+	{
+	value++;
+	return (value);
+	}
+	}
+env++;
+}
+return (NULL);
 }
