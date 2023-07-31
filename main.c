@@ -10,7 +10,7 @@
 int main(int argc __attribute__((unused)), char **argv)
 {
 	char *prompt = "($) ", *lineptr = NULL, *token;
-	size_t n = 0;
+	size_t n = 1024;
 	ssize_t nchars_read;
 	const char *delim = " \n";
 	int num_token = 0, i, ext = 1, status;
@@ -20,6 +20,8 @@ int main(int argc __attribute__((unused)), char **argv)
 	{
 		printf("%s", prompt);
 		nchars_read = getline(&lineptr, &n, stdin);
+		if (nchars_read != 1)
+		{
 		if (nchars_read == -1) /*check getline fail or EOF or CTRL_D*/
 			return (-1);
 		num_token = get_num_token(lineptr); /*get number of token*/
@@ -43,6 +45,7 @@ int main(int argc __attribute__((unused)), char **argv)
 			execmd(argv); /*execute command*/
 		else
 			wait(&status);
+		}
 	}
 	free(lineptr);
 	return (0);
