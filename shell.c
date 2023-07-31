@@ -63,7 +63,7 @@ void execmd(char **argv)
 		if (execve(actual_command, argv, NULL) == -1)
 		{
 			if (errno == ENOENT)
-			printf ("Command not found: %s\n", command);
+			printf("Command not found: %s\n", command);
 
 			else
 			perror("Error:");
