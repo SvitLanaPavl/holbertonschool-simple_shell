@@ -50,23 +50,16 @@ char *get_location(char *command)
  * @argv: the arguments include command as the first element
  * Return: nothing
  */
-void execmd(char **argv)
+void execmd(char **argv, char *actual_com)
 {
-	char *command = NULL, *actual_command = NULL;
-
 	if (argv)
 	{
-		/*get the command*/
-		command = argv[0];
-		/*generate the path to this command before pass it to execve*/
-		actual_command = get_location(command);
-		if (execve(actual_command, argv, NULL) == -1)
+		if (execve(actual_com, argv, NULL) == -1)
 		{
 			if (errno == ENOENT)
-			printf("Command not found: %s\n", command);
-
+				printf("Command not found: %s\n", argv[0]);
 			else
-			perror("Error:");
+				perror("Error:");
 		}
 	}
 }
