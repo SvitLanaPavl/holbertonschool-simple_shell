@@ -16,6 +16,8 @@ int main(int argc __attribute__((unused)), char **argv)
 	int num_token = 0, i, status;
 	pid_t pid;
 	
+	if (!isatty(STDIN_FILENO))
+		execmd(argv);
 
 	while (1)
 	{
