@@ -14,4 +14,5 @@ void execmd(char **argv);
 char *get_location(char *command);
 int get_num_token(char *lineptr);
 char *_getenv(const char *name);
+void signal_handler(int signum);
 #endif
