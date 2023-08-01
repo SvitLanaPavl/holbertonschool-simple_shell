@@ -15,8 +15,8 @@ int main(int argc __attribute__((unused)), char **argv)
 	const char *delim = " \n";
 	int num_token = 0, i, status;
 	pid_t pid;
-	
-	if (!isatty(STDIN_FILENO))
+
+	if(!isatty(STDIN_FILENO))
 		execmd(argv);
 
 	while (1)
@@ -28,7 +28,10 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (nchars_read != 1)
 		{
 		if (nchars_read == -1) /*check getline fail or EOF or CTRL_D*/
+		{
+			printf("\n");
 			return (-1);
+		}
 		num_token = get_num_token(lineptr); /*get number of token*/
 		argv = malloc(sizeof(char *) * num_token); /*allocat argv[]*/
 		token = strtok(lineptr, delim); /*store each token in argv[]*/
