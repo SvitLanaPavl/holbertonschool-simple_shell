@@ -27,11 +27,6 @@ int main(int argc __attribute__((unused)), char **argv)
 		{
 		if (nchars_read == -1) /*check getline fail or EOF or CTRL_D*/
 			return (-1);
-		if (lineptr[0] == '^' && lineptr[1] == 'D')
-		{
-		printf("\n");
-		return (0);
-		}
 		num_token = get_num_token(lineptr); /*get number of token*/
 		argv = malloc(sizeof(char *) * num_token); /*allocat argv[]*/
 		token = strtok(lineptr, delim); /*store each token in argv[]*/
