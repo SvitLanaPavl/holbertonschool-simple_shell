@@ -10,7 +10,7 @@
 int main(int argc __attribute__((unused)), char **argv)
 {
 	char *prompt = "($) ", *lineptr = NULL, *token;
-	char *actual_com = NULL, *buffer = NULL;
+	char *actual_com = NULL;
 	size_t n = 1024;
 	ssize_t nchars_read;
 	const char *delim = " \n";
@@ -41,13 +41,15 @@ int main(int argc __attribute__((unused)), char **argv)
 			}
 			argv[i] = NULL;
 			/* builtin should be here */
-			builtins_handling(argv, buffer);
-			actual_com = get_location(argv[0]);
-			pid = fork();
-			if (pid == 0)
-				execmd(argv, actual_com); /*execute command*/
-			else
-				wait(&status);
+			if (!builtins_handling(argv))
+			{
+				actual_com = get_location(argv[0]);
+				pid = fork();
+				if (pid == 0)
+					execmd(argv, actual_com); /*execute command*/
+				else
+					wait(&status);
+			}
 		}
 	}
 	free(lineptr);

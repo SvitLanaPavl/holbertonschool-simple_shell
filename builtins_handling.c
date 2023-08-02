@@ -1,6 +1,6 @@
 #include "main.h"
 
-int builtins_handling(char **command, char *buffer)
+int builtins_handling(char **command)
 {
 	int i = 0;
 	char *builtins[] = {"exit", "env", "cd", NULL};
@@ -16,9 +16,10 @@ int builtins_handling(char **command, char *buffer)
 					break;
 				case 1:
 					env_handler();
-					break;
+					return (1);
 				case 2:
-					cd_handler(command, buffer);
+					cd_handler(command);
+					return (1);
 
 			}
 		}
@@ -40,19 +41,31 @@ void env_handler(void)
 	}
 }
 
-void cd_handler(char **command, char *buffer)
+void cd_handler(char **command)
 {
-	char *dir = getcwd(buffer, strlen(buffer));
+	int value = -1;
+	char dir[PATH_MAX];
 
 	if (command[1] == NULL)
-		dir = _getenv("HOME");
-	else if (strcmp(command[1], "-") == 0)
-		dir = _getenv("OLDPWD");
-	else
 	{
-		dir = command[1];
-		if (chdir(dir) == -1)
-			perror("getcwd");
+		value = chdir(_getenv("HOME"));
+		printf ("%s\n", _getenv("HOME"));
+	}
+	else if (strcmp(command[1], "-") == 0)
+	{	
+		value = chdir(_getenv("OLDPWD"));
+		printf ("%s\n", _getenv("OLDPWD"));
+	}
+	else
+		value = chdir(command[1]);
+	
+	if (value == -1)
+		perror("address");
+	else if (value != -1)
+	{
+	getcwd(dir, sizeof(dir));
+	setenv("OLDPWD", _getenv("PWD"), 1);
+	setenv("PWD", dir, 1);
 	}
 }
 
