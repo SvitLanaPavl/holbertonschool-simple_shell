@@ -17,5 +17,9 @@ char *get_location(char *command);
 int get_num_token(char *lineptr);
 char *_getenv(const char *name);
 void signal_handler(int signum);
-
+/*builtins*/
+int builtins_handling(char **command, char *buffer);
+void env_handler(void);
+void cd_handler(char **command, char *buffer);
+void exit_handler(char **command);
 #endif
