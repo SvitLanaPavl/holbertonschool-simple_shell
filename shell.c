@@ -56,12 +56,31 @@ void execmd(char **argv, char *actual_com)
 	{
 		if (execve(actual_com, argv, NULL) == -1)
 		{
-			if (errno == ENOENT)
+			print_err(argv[0], argv);
+			free(actual_com);
+			free(argv);
+			exit(EXIT_FAILURE);
+			/*if (errno == ENOENT)
 				printf("Command not found: %s\n", argv[0]);
 			else
-				perror("Error:");
+				perror("Error:");*/
 		}
 	}
+}
+
+/**
+ * print_err - print error message
+ * @cmd: input command
+ * @argv: input line
+ *
+ * Return: nothing
+ */
+void print_err(char *cmd, char **argv)
+{
+	printf("%s", argv[0]);
+	printf(": ");
+	printf("%s", cmd);
+	printf(": not found\n");
 }
 
 /**
