@@ -29,5 +29,6 @@ ssize_t nchars_read;
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
+free(lineptr);
 return (argv);
 }
