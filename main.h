@@ -16,6 +16,7 @@ extern char **environ;
 void execmd(char **argv, char *actual_com);
 char *get_location(char *command);
 int get_num_token(char *lineptr);
+int get_tokenize(**argv);
 char *_getenv(const char *name);
 void signal_handler(int signum);
 void print_err(char *command, char **argv);
