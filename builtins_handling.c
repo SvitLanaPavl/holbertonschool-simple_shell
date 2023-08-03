@@ -67,6 +67,8 @@ void cd_handler(char **command)
 	}
 	else if (strcmp(command[1], "-") == 0)
 	{
+		if (_getenv("OLDPWD") == NULL)
+			return;
 		value = chdir(_getenv("OLDPWD"));
 		printf("%s\n", _getenv("OLDPWD"));
 	}

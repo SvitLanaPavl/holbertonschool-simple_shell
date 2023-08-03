@@ -19,6 +19,8 @@ char **get_tokenize()
 		printf("\n");
 		return (NULL);
 	}
+	if (lineptr[0] == '\0')
+		return (NULL);
 	ntoken = get_num_token(lineptr);
 	argv = malloc(sizeof(char *) * ntoken); /*alocat argv*/
 	token = strtok(lineptr, delim); /*store token in argv*/
