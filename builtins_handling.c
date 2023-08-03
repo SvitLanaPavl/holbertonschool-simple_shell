@@ -1,5 +1,10 @@
 #include "main.h"
-
+/**
+ * builtins_handling - handles builtins
+ * Description: checks for builtins
+ * @command: command
+ * Return: 0 in success
+ */
 int builtins_handling(char **command)
 {
 	int i = 0;
@@ -27,7 +32,11 @@ int builtins_handling(char **command)
 	}
 	return (0);
 }
-
+/**
+ * env_handler - handles environment
+ * Description: handles environment
+ * Return: void
+ */
 void env_handler(void)
 {
 	size_t i;
@@ -40,7 +49,12 @@ void env_handler(void)
 		write(STDOUT_FILENO, "\n", 1);
 	}
 }
-
+/**
+ * cd_handler - handles directories
+ * Description: handles directories
+ * @command: command
+ * Return: void
+ */
 void cd_handler(char **command)
 {
 	int value = -1;
@@ -49,16 +63,15 @@ void cd_handler(char **command)
 	if (command[1] == NULL)
 	{
 		value = chdir(_getenv("HOME"));
-		printf ("%s\n", _getenv("HOME"));
+		printf("%s\n", _getenv("HOME"));
 	}
 	else if (strcmp(command[1], "-") == 0)
-	{	
+	{
 		value = chdir(_getenv("OLDPWD"));
-		printf ("%s\n", _getenv("OLDPWD"));
+		printf("%s\n", _getenv("OLDPWD"));
 	}
 	else
 		value = chdir(command[1]);
-	
 	if (value == -1)
 		perror("address");
 	else if (value != -1)
@@ -68,7 +81,12 @@ void cd_handler(char **command)
 	setenv("PWD", dir, 1);
 	}
 }
-
+/**
+ * exit_handler - handles exit
+ * Description: handles exit
+ * @command: command
+ * Return: void
+ */
 void exit_handler(char **command)
 {
 	char *message = "Too many arguments";
@@ -78,5 +96,5 @@ void exit_handler(char **command)
 		write(STDOUT_FILENO, message, strlen(message));
 	}
 	/*free_token(command);*/
-	exit (EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }

@@ -48,7 +48,8 @@ char *get_location(char *command)
 /**
  * execmd - get a command & find the path to this command & execute it
  * @argv: the arguments include command as the first element
- * Return: nothing
+ * @actual_com: actual command
+ * Return: void
  */
 void execmd(char **argv, char *actual_com)
 {
