@@ -9,35 +9,34 @@
  */
 int main(int argc __attribute__((unused)), char **argv)
 {
-	char *prompt = "($) ", *token, *actual_com = NULL;
+	char *prompt = "($) ", *actual_com = NULL;
 	int status, restr;
 	pid_t pid;
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO)) /*execmd(argv);*/
+		if (isatty(STDIN_FILENO))
 			signal(SIGINT, signal_handler);
 		printf("%s", prompt);
-		argv = get_tokenize(argv);
-			if (!builtins_handling(argv))
+		argv = get_tokenize();
+		if (!builtins_handling(argv))
+		{
+			actual_com = get_location(argv[0]);
+			pid = fork();
+			if (pid == 0)
 			{
-				actual_com = get_location(argv[0]);
-				pid = fork();
-				if (pid == 0)
+				restr = access(actual_com, X_OK);
+				if (restr == -1)
 				{
-					restr = access(actual_com, X_OK);
-					if (restr == -1)
-					{
-						printf("You are not allowed to run this command\n");
-						exit(1);
-					}
-					else
-					execmd(argv, actual_com); /*execute command*/
+					printf("You are not allowed to run this command\n");
+					exit(1);
 				}
 				else
-					wait(&status);
+					execmd(argv, actual_com); /*execute command*/
 			}
+				else
+					wait(&status);
 		}
-	};
+	}
 	return (0);
 }

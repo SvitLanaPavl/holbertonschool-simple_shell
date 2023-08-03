@@ -122,21 +122,21 @@ int get_num_token(char *lineptr)
  */
 char *_getenv(const char *name)
 {
-char *value = NULL;
-char **env = environ;
+	char *value = NULL;
+	char **env = environ;
 
-while (*env)
-{
-if (strncmp(*env, name, strlen(name)) == 0)
+	while (*env)
 	{
-	value = strchr(*env, '=');
-	if (value)
-	{
-	value++;
-	return (value);
+		if (strncmp(*env, name, strlen(name)) == 0)
+		{
+			value = strchr(*env, '=');
+			if (value)
+			{
+				value++;
+				return (value);
+			}
+		}
+		env++;
 	}
-	}
-env++;
-}
-return (NULL);
+	return (NULL);
 }
