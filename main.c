@@ -15,14 +15,19 @@ int main(int argc __attribute__((unused)), char **argv)
 	size_t n = 1024;
 	pid_t pid;
 
+	signal(SIGINT, signal_handler);
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			signal(SIGINT, signal_handler);
-		printf("%s", prompt);
-	nchars_read = getline(&lineptr, &n, stdin);
+			printf("%s", prompt);
+		nchars_read = getline(&lineptr, &n, stdin);
         	if (nchars_read != 1)
-       	 {
+       	 	{
+			if (nchars_read == -1)
+			{
+				printf("\n");
+				exit(0);
+			}
 		argv = get_tokenize(nchars_read, lineptr);
 		if (!builtins_handling(argv))
 		{
@@ -42,8 +47,9 @@ int main(int argc __attribute__((unused)), char **argv)
 				else
 					wait(&status);
 		}
+		}
 	}
-	}
+	free(actual_com);
 	free(lineptr);
 	return (0);
 }
