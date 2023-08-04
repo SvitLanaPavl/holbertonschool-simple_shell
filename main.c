@@ -32,18 +32,12 @@ int main(int argc __attribute__((unused)), char **argv)
 			if (!builtins_handling(argv))
 			{
 				actual_com = get_location(argv[0]);
+				restr = access(actual_com, X_OK);
+				if (actual_com && restr == -1)
+					printf("You are not allowed to run this command\n");
 				pid = fork();
 				if (pid == 0)
-				{
-					restr = access(actual_com, X_OK);
-					if (restr == -1)
-					{
-						printf("You are not allowed to run this command\n");
-						exit(1);
-					}
-					else
-						execmd(argv, actual_com); /*execute command*/
-				}
+					execmd(argv, actual_com); /*execute command*/
 				else
 					wait(&status);
 			}
