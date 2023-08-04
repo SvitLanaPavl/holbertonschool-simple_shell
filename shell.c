@@ -55,7 +55,7 @@ void execmd(char **argv, char *actual_com)
 {
 	if (argv)
 	{
-		if (execve(actual_com, argv, NULL) == -1)
+		if (execve(actual_com, argv, environ) == -1)
 		{
 			print_err(argv[0], argv);
 			free(actual_com);

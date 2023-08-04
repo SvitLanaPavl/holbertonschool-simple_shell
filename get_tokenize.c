@@ -28,6 +28,5 @@ char **get_tokenize(ssize_t nchars_read, char *lineptr)
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	free(lineptr);
 	return (argv);
 }

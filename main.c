@@ -44,5 +44,6 @@ int main(int argc __attribute__((unused)), char **argv)
 		}
 	}
 	}
+	free(lineptr);
 	return (0);
 }

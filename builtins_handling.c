@@ -63,14 +63,12 @@ void cd_handler(char **command)
 	if (command[1] == NULL)
 	{
 		value = chdir(_getenv("HOME"));
-		printf("%s\n", _getenv("HOME"));
 	}
 	else if (strcmp(command[1], "-") == 0)
 	{
 		if (_getenv("OLDPWD") == NULL)
 			return;
 		value = chdir(_getenv("OLDPWD"));
-		printf("%s\n", _getenv("OLDPWD"));
 	}
 	else
 		value = chdir(command[1]);
@@ -78,9 +76,10 @@ void cd_handler(char **command)
 		perror("address");
 	else if (value != -1)
 	{
-	getcwd(dir, sizeof(dir));
-	setenv("OLDPWD", _getenv("PWD"), 1);
-	setenv("PWD", dir, 1);
+		getcwd(dir, sizeof(dir));
+		setenv("OLDPWD", _getenv("PWD"), 1);
+		setenv("PWD", dir, 1);
+		printf("%s\n", dir);
 	}
 }
 /**
@@ -91,7 +90,7 @@ void cd_handler(char **command)
  */
 void exit_handler(char **command)
 {
-	char *message = "Too many arguments";
+	char *message = "Too many arguments\n";
 
 	if (command[1])
 	{
