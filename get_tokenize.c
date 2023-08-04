@@ -5,17 +5,12 @@
  * @argv: argv
  * Return: argv
  */
-char **get_tokenize(ssize_t nchars_read, char *lineptr)
+char **get_tokenize(char *lineptr)
 {
 	char *token = NULL, **argv;
 	const char *delim = " \n";
 	int i, ntoken = 0;
 
-		if (nchars_read == -1)
-	{
-		printf("\n");
-		return (NULL);
-	}
 	ntoken = get_num_token(lineptr);
 	argv = malloc(sizeof(char *) * ntoken); /*alocat argv*/
 	if (argv == NULL)

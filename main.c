@@ -19,16 +19,15 @@ int main(int argc __attribute__((unused)), char **argv)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("%s", prompt);
+			write(STDOUT_FILENO, prompt, strlen(prompt));
 		nchars_read = getline(&lineptr, &n, stdin);
         	if (nchars_read != 1)
        	 	{
 			if (nchars_read == -1)
 			{
-				printf("\n");
 				exit(0);
 			}
-		argv = get_tokenize(nchars_read, lineptr);
+		argv = get_tokenize(lineptr);
 		if (!builtins_handling(argv))
 		{
 			actual_com = get_location(argv[0]);
