@@ -24,10 +24,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (nchars_read != 1)
 		{
 			if (nchars_read == -1)
-			{
-				write(STDOUT_FILENO, "\n", 3);
 				exit(0);
-			}
 			argv = get_tokenize(lineptr);
 			if (!builtins_handling(argv))
 			{
@@ -43,6 +40,6 @@ int main(int argc __attribute__((unused)), char **argv)
 			}
 		}
 	}
-	free(actual_com), free(lineptr);
+	free(actual_com), free(lineptr), free(argv);
 	return (0);
 }
