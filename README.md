@@ -1,6 +1,6 @@
 # Simple Shell #
 
-<img src='https://guideposts.org/wp-content/uploads/2017/04/blog_shell_1540-1024x576.jpg.webp' width="800" height="350" alt='simple-shell'/>
+<img src='https://guideposts.org/wp-content/uploads/2017/04/blog_shell_1540-1024x576.jpg.webp' width="850" height="370" alt='simple-shell'/>
 
 ## **_Introduction_** ##
 This program is the recreation of the UNIX shell - a command line interpreter - that allows a user to interact with a computer by running commands or programs. The shell parses the commands and sends them to the operating system to perform.
@@ -120,7 +120,7 @@ void exit_handler(char **command);
 | ----- | ----------- |
 | main.h | prototypes of functions and structures, global variables |        
 | main.c | recreates a simple shell | 
-| shell.c | gets a command, finds a path to this command and executes it; prints error an message; searches the table of environment variables for an entry corresponding to the name|
+| shell.c | gets a command, finds a path to this command and executes it; prints an error message; searches the table of environment variables for an entry corresponding to the name|
 | signal_handler.c | handles the CTRL C signal to ignore it in this simple shell |
 | get_tokenize.c | gets the input and tokenizes it returning the character array |
 | builtins_handling.c | handles builtins - cd, env, exit |
