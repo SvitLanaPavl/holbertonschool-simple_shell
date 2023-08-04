@@ -2,8 +2,8 @@
 /**
  * get_tokenize - gets the input and tokenizes
  * Description: gets the line and tokenizes it
- * @argv: argv
- * Return: argv
+ * @lineptr: command line
+ * Return: command array
  */
 char **get_tokenize(char *lineptr)
 {
