@@ -14,7 +14,10 @@ char **get_tokenize(char *lineptr)
 	ntoken = get_num_token(lineptr);
 	argv = malloc(sizeof(char *) * ntoken); /*alocat argv*/
 	if (argv == NULL)
+	{
+		free(argv);
 		return (NULL);
+	}
 	token = strtok(lineptr, delim); /*store token in argv*/
 	for (i = 0; token != NULL; i++)
 	{
@@ -23,5 +26,6 @@ char **get_tokenize(char *lineptr)
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
+	free(token);
 	return (argv);
 }
