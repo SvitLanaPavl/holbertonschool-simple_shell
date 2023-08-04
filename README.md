@@ -21,21 +21,21 @@ This program is the recreation of the UNIX shell - a command line interpreter - 
 * Handles interactive and non-interactive mode
 
 ## **_Implementation and Compilation_** ##
-Clone the repository 
+To start using this program, first, clone the repository 
 `https://github.com/meisibley/holbertonschool-simple_shell.git`
 
-and compile the following way
+and compile in the following way
 `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
 
 ## **_How to use_** ##
-To start using the program, type `./hsh`. You will see the prompt `($)` which indicates that it is ready to receive the command. 
-The commands can be *built-ins*, for instance
+In your terminal, type `./hsh` to run the program. You will see the prompt `($)` which indicates that it is ready to receive the command. 
+Currently, this simple shell handles the  *built-in* commands, for instance,
 
-`cd` - change directory, followed by the path or  with the options (e.g. - for previous working directory or .. for one directory up)
-`exit` - exits the shell
+`cd` - change directory, followed by the path or with the options (e.g. `-` for previous working directory or `..` for moving one directory up)<br />
+`exit` - exits the shell<br />
 `env` - prints the current environment variables
 
-and they are run right away. However, if they are not built-ins, they are searched for in the PATH directory.
+They are run right away. However, if the commands are not built-ins, they are searched for in the `PATH` directory and then are executed. If the command is not found or the user does not have the permission to run it, there will be an error message.
 
 ## **_Examples_** ##
 
@@ -44,14 +44,19 @@ and they are run right away. However, if they are not built-ins, they are search
 _builtin_
 ```
 ($) pwd
-($) /holbertonschool-simple_shell
+/holbertonschool-simple_shell
 ($) cd
-($) /root  
+/root
+($) cd -
+/holbertonschool-simple_shell
+($) exit  
 ```
 **Example 2**
 
 _via PATH_
 ```
+($) /bin/ls
+README.md compil hsh main.c main.h shell.c test_ls_2
 ($) ls -la
 ($) total 48
 drwxr-xr-x 3 root root   120 Jul 27 23:57 .
@@ -67,62 +72,60 @@ drwxr-xr-x 8 root root   220 Jul 28 00:05 .git
 ```
 **Example 3**
 
-_executable_
+_non-interactive mode_
 
 ```
-($) ./sum
-($) The sum of 2 and 3 is 5
+($) echo "/bin/ls" | ./hsh
+hsh main.c shell.c test_ls_25
 ```
-## **_List of library functions and system calls_** ##
+## **_List of library functions and system calls used_** ##
 
 ```
-access
-chdir
-close
-closedir
-execve
-exit
-fflush
-fork
-free
-getcwd
-getline
-getpid
-isatty
-kill
-malloc
-open
-opendir
-perror
-printf
-putchar
-read
-readdir
-signal
-stat
-strtok
-wait
-waitpid
-write
+access()
+chdir()
+execve()
+exit()
+fork()
+free()
+getcwd()
+getline()
+getpid()
+isatty()
+malloc()
+perror()
+printf()
+signal()
+stat()
+strtok()
+wait()
+write()
 ```
 ## **_List of custom functions_** ##
 ```
-_strdup
-_strlen
-_strcpy
-_strcat
-_strcmp
+void execmd(char **argv, char *actual_com);
+char *get_location(char *command);
+int get_num_token(char *lineptr);
+char **get_tokenize(ssize_t nchars_read, char *lineptr);
+char *_getenv(const char *name);
+void signal_handler(int signum);
+void print_err(char *command, char **argv);
+int builtins_handling(char **command);
+void env_handler(void);
+void cd_handler(char **command);
+void exit_handler(char **command);
 ```
 ## **_Files and their descriptions_** ##
 
 | **Files** | **Descriptions** |
 | ----- | ----------- |
-| main.h | prototypes of functions and structures |        
+| main.h | prototypes of functions and structures, global variables |        
 | main.c | recreates a simple shell | 
-| shell.c | gets the path of the command file and executes it |
+| shell.c | gets a command, finds a path to this command and executes it; prints error an message; searches the table of environment variables for an entry corresponding to the name|
+| signal_handler.c | handles the CTRL C signal to ignore it in this simple shell |
+| get_tokenize.c | gets the input and tokenizes it returning the character array |
+| builtins_handling.c | handles builtins - cd, env, exit |
 
 ## **_Authors_** ##
 
-Mei Sibley
-
+Mei Sibley <br />
 Svitlana Pavlovska
