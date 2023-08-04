@@ -96,6 +96,5 @@ void exit_handler(char **command)
 	{
 		write(STDOUT_FILENO, message, strlen(message));
 	}
-	/*free_token(command);*/
 	exit(EXIT_SUCCESS);
 }
