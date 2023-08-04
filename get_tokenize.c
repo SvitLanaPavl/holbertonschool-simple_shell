@@ -5,24 +5,21 @@
  * @argv: argv
  * Return: argv
  */
-char **get_tokenize()
+char **get_tokenize(ssize_t nchars_read, char *lineptr)
 {
-	char *lineptr = NULL, *token, **argv;
+	char *token = NULL, **argv;
 	const char *delim = " \n";
 	int i, ntoken = 0;
-	size_t n = 1024;
-	ssize_t nchars_read;
 
-	nchars_read = getline(&lineptr, &n, stdin);
-	if (nchars_read == -1)
+		if (nchars_read == -1)
 	{
 		printf("\n");
 		return (NULL);
 	}
-	if (lineptr[0] == '\0')
-		return (NULL);
 	ntoken = get_num_token(lineptr);
 	argv = malloc(sizeof(char *) * ntoken); /*alocat argv*/
+	if (argv == NULL)
+		return (NULL);
 	token = strtok(lineptr, delim); /*store token in argv*/
 	for (i = 0; token != NULL; i++)
 	{
@@ -31,7 +28,6 @@ char **get_tokenize()
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	free(token);
 	free(lineptr);
 	return (argv);
 }

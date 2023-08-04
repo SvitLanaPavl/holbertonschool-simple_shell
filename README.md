@@ -18,6 +18,7 @@ This program is the recreation of the UNIX shell - a command line interpreter - 
 * Handle the PATH
 * Implement the exit built-in, that exits the shell
 * Implement the env built-in, that prints the current environment
+* Handles interactive and non-interactive mode
 
 ## **_Implementation and Compilation_** ##
 Clone the repository 
@@ -28,13 +29,13 @@ and compile the following way
 
 ## **_How to use_** ##
 To start using the program, type `./hsh`. You will see the prompt `($)` which indicates that it is ready to receive the command. 
-The commands can be *built-ins*, like
+The commands can be *built-ins*, for instance
 
-`cd` - change directory
-`echo` - write a string to stdout
-`pwd` - print working directory
+`cd` - change directory, followed by the path or  with the options (e.g. - for previous working directory or .. for one directory up)
+`exit` - exits the shell
+`env` - prints the current environment variables
 
-*aliases* which are shortcuts that reference a command, or *executable files*.
+and they are run right away. However, if they are not built-ins, they are searched for in the PATH directory.
 
 ## **_Examples_** ##
 
@@ -43,13 +44,15 @@ The commands can be *built-ins*, like
 _builtin_
 ```
 ($) pwd
-($) /holbertonschool-simple_shell  
+($) /holbertonschool-simple_shell
+($) cd
+($) /root  
 ```
 **Example 2**
 
-_alias_
+_via PATH_
 ```
-($) la
+($) ls -la
 ($) total 48
 drwxr-xr-x 3 root root   120 Jul 27 23:57 .
 drwxr-xr-x 1 root root  4096 Jul 27 23:42 ..

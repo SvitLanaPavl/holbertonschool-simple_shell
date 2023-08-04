@@ -9,8 +9,10 @@
  */
 int main(int argc __attribute__((unused)), char **argv)
 {
-	char *prompt = "($) ", *actual_com = NULL;
+	char *prompt = "($) ", *actual_com = NULL, *lineptr = NULL;
 	int status, restr;
+	ssize_t	nchars_read;
+	size_t n = 1024;
 	pid_t pid;
 
 	while (1)
@@ -18,7 +20,10 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (isatty(STDIN_FILENO))
 			signal(SIGINT, signal_handler);
 		printf("%s", prompt);
-		argv = get_tokenize();
+	nchars_read = getline(&lineptr, &n, stdin);
+        	if (nchars_read != 1)
+       	 {
+		argv = get_tokenize(nchars_read, lineptr);
 		if (!builtins_handling(argv))
 		{
 			actual_com = get_location(argv[0]);
@@ -37,6 +42,7 @@ int main(int argc __attribute__((unused)), char **argv)
 				else
 					wait(&status);
 		}
+	}
 	}
 	return (0);
 }

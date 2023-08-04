@@ -61,10 +61,10 @@ void execmd(char **argv, char *actual_com)
 			free(actual_com);
 			free(argv);
 			exit(EXIT_FAILURE);
-			/*if (errno == ENOENT)
+			if (errno == ENOENT)
 				printf("Command not found: %s\n", argv[0]);
 			else
-				perror("Error:");*/
+				perror("Error:");
 		}
 	}
 }
