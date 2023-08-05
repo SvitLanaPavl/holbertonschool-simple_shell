@@ -21,22 +21,22 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, prompt, strlen(prompt));
 		nchars_read = getline(&lineptr, &n, stdin);
-		if (nchars_read != 1)
+		if (nchars_read != 1) /*input is not just goto new line*/
 		{
-			if (nchars_read == -1)
+			if (nchars_read == -1) /*input command is invalid*/
 				exit(0);
-			argv = get_tokenize(lineptr);
-			if (!builtins_handling(argv))
+			argv = get_tokenize(lineptr); /*divid input to an array*/
+			if (argv && !builtins_handling(argv))
 			{
 				actual_com = get_location(argv[0]);
 				restr = access(actual_com, X_OK);
 				if (actual_com && restr == -1)
 					printf("You are not allowed to run this command\n");
-				pid = fork();
+				pid = fork(); /*builds a child process to execute*/
 				if (pid == 0)
-					execmd(argv, actual_com); /*execute command*/
+					execmd(argv, actual_com);
 				else
-					wait(&status);
+					wait(&status); /*parent process wait child*/
 			}
 		}
 	}

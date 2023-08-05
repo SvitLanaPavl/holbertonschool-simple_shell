@@ -7,10 +7,22 @@
  */
 char **get_tokenize(char *lineptr)
 {
-	char *token = NULL, **cmd_arr;
+	char *token = NULL, **cmd_arr = NULL;
 	const char *delim = " \n";
-	int i, ntoken = 0;
+	int i, ntoken = 0, ct = 0, flag = 0;
 
+	while(lineptr[ct] != '\0' && lineptr[ct] != '\n')
+	{
+		if (lineptr[ct] == ' ' || lineptr[ct] == '\t' || lineptr[ct] == '\r')
+			ct++;
+		else
+		{
+			flag = 1;
+			ct++;
+		}
+	}
+	if (flag == 0)
+		return (NULL);
 	ntoken = get_num_token(lineptr);
 	cmd_arr = malloc(sizeof(char *) * ntoken); /*alocat argv*/
 	if (cmd_arr == NULL)
