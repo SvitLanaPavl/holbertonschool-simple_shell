@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * get_location - get the path of this command file
- * @command: user inputs command
- *
+ * get_location - get the path of the command file
+ * Description: gets the path of the command
+ * @command: user-input command
  * Return: file path
  */
 char *get_location(char *command)
@@ -47,6 +47,7 @@ char *get_location(char *command)
 
 /**
  * execmd - get a command & find the path to this command & execute it
+ * Description: executes the command based on the path
  * @argv: the arguments include command as the first element
  * @actual_com: actual command
  * Return: void
@@ -70,11 +71,11 @@ void execmd(char **argv, char *actual_com)
 }
 
 /**
- * print_err - print error message
+ * print_err - prints error message
+ * Description: prints the error message
  * @cmd: input command
  * @argv: input line
- *
- * Return: nothing
+ * Return: void
  */
 void print_err(char *cmd, char **argv)
 {
@@ -85,9 +86,9 @@ void print_err(char *cmd, char **argv)
 }
 
 /**
- * get_num_token - get number of tokens
- * @lineptr: line of command and path
- *
+ * get_num_token - gets number of tokens
+ * Description: get the number of tokens from the input string
+ * @lineptr: user-input string to tokenize
  * Return: number of tokens
  */
 int get_num_token(char *lineptr)

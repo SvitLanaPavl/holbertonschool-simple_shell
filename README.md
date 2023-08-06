@@ -20,6 +20,9 @@ This program is the recreation of the UNIX shell - a command line interpreter - 
 * Implement the env built-in, that prints the current environment
 * Handles interactive and non-interactive mode
 
+## **_The flowchart of the Program_**##
+<a href="https://ibb.co/JRjbKgr"><img src="https://i.ibb.co/DDf6tTw/Flowchart-simple-shell.jpg" alt="Flowchart-simple-shell" border="0"></a>
+
 ## **_Implementation and Compilation_** ##
 To start using this program, first, clone the repository 
 `https://github.com/meisibley/holbertonschool-simple_shell.git`
@@ -72,10 +75,10 @@ drwxr-xr-x 8 root root   220 Jul 28 00:05 .git
 ```
 **Example 3**
 
-_non-interactive mode_
+_non-interactive mode_ will display the same output as the interactive one
 
 ```
-($) echo "/bin/ls" | ./hsh
+echo "/bin/ls" | ./hsh
 hsh main.c shell.c test_ls_25
 ```
 ## **_List of library functions and system calls used_** ##
