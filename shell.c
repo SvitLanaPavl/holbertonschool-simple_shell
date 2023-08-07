@@ -81,7 +81,6 @@ void execmd(char **argv, char *actual_com)
  * print_err - prints error message
  * Description: prints the error message
  * @cmd: input command
- * @argv: input line
  * Return: void
  */
 void print_err(char *cmd)
