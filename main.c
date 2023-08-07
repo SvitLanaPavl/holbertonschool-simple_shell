@@ -38,6 +38,7 @@ int main(int argc __attribute__((unused)), char **argv)
 				else
 					wait(&status); /*parent process waits for child*/
 			}
+		free_tokens(argv);
 		}
 	}
 	free(actual_com), free(lineptr), free(argv);

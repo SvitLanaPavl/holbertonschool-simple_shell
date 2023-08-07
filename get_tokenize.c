@@ -47,3 +47,19 @@ char **get_tokenize(char *lineptr)
 	free(token);
 	return (cmd_arr);
 }
+/**
+ * free_tokens - frees the allocated memory for tokens
+ * Description: frees memory
+ * @cmd_arr: command array
+ * Return: void
+ */
+void free_tokens(char **cmd_arr)
+{
+	int i;
+
+	if (cmd_arr == NULL)
+		return;
+	for (i = 0; cmd_arr[i] != NULL; i++)
+		free(cmd_arr[i]);
+	free(cmd_arr);
+}
