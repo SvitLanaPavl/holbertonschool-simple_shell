@@ -1,45 +1,12 @@
-.TH man 3 "SIMPLE SHELL MAN PAGE"
-
+.TH man 1 "06 August 2023" "1.0" "SIMPLE SHELL MAN PAGE"
 .SH NAME
-sshell - simple shell, imitation of shell commands, the standard command langrage interpreter
-
+.B hsh
+- simple shell, imitation of shell commands, the standard command langrage interpreter
 .SH SYNOPSIS
-In the case of a command, you get a formal description of how to run it and what command line options it takes.
-.TP
-#include "main.h"
-.TP
-#include <stdio.h>
-.TP
-#include <stdlib.h>
-.TP
-#include <string.h>
-.TP
-#include <unistd.h>
-.TP
-#include <sys/stat.h>
-.TP
-#include <sys/types.h>
-.TP
-#include <signal.h>
-.TP
-#include <sys/wait.h>
-.TP
-#include <errno.h>
-.TP
-void execmd(char **argv) - The function to get an entry command
-.TP
-char *get_location(char *command) - To generate the path to a command before pass it to execue
-.TP
-int get_num_token(char *lineptr) - Counts token numbers from an entry line
-.TP
-char *_getenv(const char *name) - Searches the table of environment variables for an entry corresponding to name and returns a pointer to a buffer containing the current string value of name
-
+.B ./hsh
+[command] [options]
 .SH DESCRIPTION
-The sshell utility is a command langrage interpreter that shall execute commands read from a command line string, the standard entrys, or a specified file. 
-
-Pathname expansion shall not fail due to the size of a file.
-
-Simple shell input and output redirections have an implementation-defined offset maximum that is established in the open file description.
+Simple Shell is one of Holberton School end of first trimester projects. It is built to imitate the basic functionality of the original Lunix shell.
 .SH OPERANDS
 The following operands shall be supported:
 .TP
@@ -51,12 +18,9 @@ The positional parameters shall be set to arguments, if any.
 .TP
 .BR command_name
 A string assigned to special parameter 0 when executing the commands in command_string. if command_name is not specified, special parameter 0 shall be set to the value of the first argument passed to sshell from its parent (i.e. argv[0] for a C program), which is normally a pathname used to execute the sshell utility.
-.TP
-.BR command_string
-A string that shall be interpreted by the shell as one or more commands, as if the string were the argument to the system() defined in the System Interfaces volume of POSIX.1-2017. If the command_string operand is an empty string, sshell shall exit with a zeor exit status.
 .SH ENVIRONMENT VARIABLES
 .TP
-The following environment variables shall affect the execution of sshell:
+The following environment variables shall affect the execution of simple shell:
 .TP
 .BR ENV
 This variable, when an interactive shell is invoked, shall be subjected to parameter expansion by the shell, and the resulting value shall be used as a pathname of a file containing shell commands to execute in the current environment. The file need not be executable. If the expanded value of ENV is not an absolute pathname, the results are unspecified.
@@ -66,36 +30,36 @@ Establish a string formatted as described in the Base Definitions, used to effec
 .TP                                                                                                           
 .BR PWD                                                                                                       
 This variable shall represent an absolute pathname of the current working directory. Assignments to this waria
-ble may be ignored.                                                                                           
-.SH ASYNCHRONOUS EVENTS                                                                                       
-The sshell utility shall take the standard action for some signals with the following exceptions.             
-                                                                                                              
-If the shell is interactive, SIGINT signals received during command line editing shall be handled as described
- in the EXTENDED DESCRIPTION, and SIGINT signals received at other times shall be caught but no action perform
-ed. SIGQUIT signal (CRTL_C) shall be ignored.                                                                 
-.SH                                                                                                           
-INPUT FILES or OUTPUT FILES                                                                                   
-None.                                                                                                         
-.SH STDIN                                                                                                     
-.TP                                                                                                           
-The script executes one or more commands that require input form standard input.                              
-.TP                                                                                                           When the shell is using standard input and it invokes a command that also uses standard input, the simple shel
-l shall ensure that the standard input file pointer points directly after the command it has read when the com
-mand begins execution. It shall not read ahead in such a manner that any characters intended to be read by the
- invoked command are consumed by the shell or that characters that are now read by the invoked command are not
- seen by the shell. When the command expecting to read standard input is started asynchronously by an interact
-ive shell, it is unspecified whether characters are read by the command or interpreted by the shell.          
-.SH STDOUT                                                                                                    
-See the STDERR section.                                                                                       
-.SH STDERR                                                                                                    
-Except as otherwise stated, standard error shall be used only for diagnostic messages.                        
-.SH EXAMPLES                                                                                                  
-.TP                                                                                                           
-                                                                                                              
-some examples of common usage                                                                                 
-.SEE ALSO                                                                                                     
-A list of related commands or functions                                                                       
-.BUGS                                                                                                         
-.AUTHOR
-Svitlana Pavlovska & Mei Sibley
-.COPYRIGHT
+ble may be ignored.
+.SH OPTIONS
+.B hsh
+operates in both
+.I interactive
+and
+.I non_interactive
+mode. User may initiate
+.B ./hsh
+and begin the simple shell working
+.SH ARGUMENTS
+argv[0] is the command to be run by
+.B simple shell
+and arguments following as modifiers or options.                                         
+.SH EXAMPLES                                                               
+.TP
+The Simple Shell always has prompt: "(S) " to wait a new command line inputing.
+.TP
+The user may quit the program by typing "exit" or "Ctrl + d" on the command line. 
+.TP
+.B ($) cd
+.TP
+/root
+.TP
+.B ($) ls
+.TP
+AUTHORS              compil          hello  main.c  man_1_simple_shell  shell.c           test_ls_2           
+builtins_handling.c  get_tokenize.c  hsh    main.h  README.md           signal_handler.c                      
+.TP
+.B ($)
+.SH AUTHOR
+.TP
+.B Svitlana Pavlovska & Mei Sible

@@ -11,7 +11,8 @@ char **get_tokenize(char *lineptr)
 	const char *delim = " \n";
 	int i, ntoken = 0, ct = 0, flag = 0;
 
-	while(lineptr[ct] != '\0' && lineptr[ct] != '\n')/*takes care of spaces*/
+	/*takes care of spaces*/
+	while (lineptr[ct] != '\0' && lineptr[ct] != '\n')
 	{
 		if (lineptr[ct] == ' ' || lineptr[ct] == '\t' || lineptr[ct] == '\r')
 			ct++;
