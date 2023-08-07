@@ -7,13 +7,11 @@
  *
  * Return: 0 if success, -1 if not success
  */
-int main(int argc __attribute__((unused)), char **argv)
+int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 {
-	char *prompt = "($) ", *actual_com = NULL, *lineptr = NULL;
-	int status;
+	char *prompt = "($) ", *lineptr = NULL;
 	ssize_t	nchars_read;
 	size_t n = 1024;
-	pid_t pid;
 
 	signal(SIGINT, signal_handler);
 	while (1)
@@ -25,23 +23,9 @@ int main(int argc __attribute__((unused)), char **argv)
 		{
 			if (nchars_read == -1) /*input command is invalid*/
 				exit(0);
-			argv = get_tokenize(lineptr); /*divide input into an array*/
-			if (argv && !builtins_handling(argv))
-			{
-				actual_com = get_location(argv[0]);
-				if (actual_com != NULL)
-				{
-				pid = fork(); /*builds a child process to execute*/
-				if (pid == 0)
-					execmd(argv, actual_com);
-				else
-					wait(&status); /*parent process waits for child*/
-				}
-				argv[0] = NULL;
-			}
-		free_tokens(argv);
+			get_tokenize(lineptr); /*divide input into an array and execute*/
 		}
 	}
-	free(actual_com), free(lineptr), free(argv);
+	free(lineptr);
 	return (0);
 }
