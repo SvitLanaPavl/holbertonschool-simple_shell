@@ -19,7 +19,7 @@ char **get_tokenize(char *lineptr)
 		else
 			flag = 1, ct++;
 	}
-	if (flag == 0)
+	if (flag == 0) /*all input is spaces*/
 		return (NULL);
 	ntoken = get_num_token(lineptr);
 	cmd_arr = malloc(sizeof(char *) * (ntoken + 1)); /*allocate argv*/
@@ -62,16 +62,4 @@ void free_tokens(char **cmd_arr)
 	for (i = 0; cmd_arr[i] != NULL; i++)
 		free(cmd_arr[i]);
 	free(cmd_arr);
-}
-/**
- * free_location - frees the allocated memory for command line
- * Description: frees memory
- * @actual_com: command line
- * Return: void
- */
-void free_location(char *actual_com)
-{
-	if (actual_com == NULL)
-		return;
-	free(actual_com);
 }

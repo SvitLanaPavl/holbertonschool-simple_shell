@@ -19,9 +19,9 @@ int get_num_token(char *lineptr);
 char **get_tokenize(char *lineptr);
 char *_getenv(const char *name);
 void signal_handler(int signum);
-void print_err(char *command, char **argv);
+void print_err(char *command);
 void free_tokens(char **cmd_arr);
-void free_location(char *actual_com);
+int permissions(char *command);
 /*builtins*/
 int builtins_handling(char **command);
 void env_handler(void);

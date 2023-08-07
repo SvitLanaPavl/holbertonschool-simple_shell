@@ -21,7 +21,7 @@ char *get_location(char *command)
 		while (path_token != NULL)/*command file is in subdirectory*/
 		{
 			directory_length = strlen(path_token);
-		file_path = malloc(command_length + directory_length + 2);
+			file_path = malloc(command_length + directory_length + 2);
 			strcpy(file_path, path_token);
 			strcat(file_path, "/");
 			strcat(file_path, command);
@@ -33,13 +33,16 @@ char *get_location(char *command)
 			}
 			else
 			{
-				free(file_path);
+			free(file_path);
 				path_token = strtok(NULL, ":");
 			}
 		} /*end while loop*/
 		free(path_copy);
+		if (permissions(command) == 0)
+		{
 		if (stat(command, &buffer) == 0)
 			return (command);
+		}
 		return (NULL);
 	}
 	return (NULL);
@@ -54,12 +57,16 @@ char *get_location(char *command)
  */
 void execmd(char **argv, char *actual_com)
 {
+	int i = 0;
+
 	if (argv)
 	{
 		if (execve(actual_com, argv, environ) == -1)
 		{
-			print_err(argv[0], argv);
+			print_err(argv[0]);
 			free(actual_com);
+			for (; argv[i] != NULL; i++)
+				free(argv[i]);
 			free(argv);
 			exit(EXIT_FAILURE);
 			if (errno == ENOENT)
@@ -77,10 +84,8 @@ void execmd(char **argv, char *actual_com)
  * @argv: input line
  * Return: void
  */
-void print_err(char *cmd, char **argv)
+void print_err(char *cmd)
 {
-	printf("%s", argv[0]);
-	printf(": ");
 	printf("%s", cmd);
 	printf(": not found\n");
 }

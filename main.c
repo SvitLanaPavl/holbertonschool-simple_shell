@@ -10,7 +10,7 @@
 int main(int argc __attribute__((unused)), char **argv)
 {
 	char *prompt = "($) ", *actual_com = NULL, *lineptr = NULL;
-	int status, restr;
+	int status;
 	ssize_t	nchars_read;
 	size_t n = 1024;
 	pid_t pid;
@@ -29,14 +29,14 @@ int main(int argc __attribute__((unused)), char **argv)
 			if (argv && !builtins_handling(argv))
 			{
 				actual_com = get_location(argv[0]);
-				restr = access(actual_com, X_OK);/*checks permission*/
-				if (actual_com && restr == -1)
-					printf("You are not allowed to run this command\n");
+				if (actual_com != NULL)
+				{
 				pid = fork(); /*builds a child process to execute*/
 				if (pid == 0)
 					execmd(argv, actual_com);
 				else
 					wait(&status); /*parent process waits for child*/
+				}
 				argv[0] = NULL;
 			}
 		free_tokens(argv);
