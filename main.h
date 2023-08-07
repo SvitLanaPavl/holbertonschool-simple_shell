@@ -21,6 +21,7 @@ char *_getenv(const char *name);
 void signal_handler(int signum);
 void print_err(char *command, char **argv);
 void free_tokens(char **cmd_arr);
+void free_location(char *actual_com);
 /*builtins*/
 int builtins_handling(char **command);
 void env_handler(void);

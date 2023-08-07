@@ -63,3 +63,15 @@ void free_tokens(char **cmd_arr)
 		free(cmd_arr[i]);
 	free(cmd_arr);
 }
+/**
+ * free_location - frees the allocated memory for command line
+ * Description: frees memory
+ * @actual_com: command line
+ * Return: void
+ */
+void free_location(char *actual_com)
+{
+	if (actual_com == NULL)
+		return;
+	free(actual_com);
+}

@@ -37,6 +37,7 @@ int main(int argc __attribute__((unused)), char **argv)
 					execmd(argv, actual_com);
 				else
 					wait(&status); /*parent process waits for child*/
+				argv[0] = NULL;
 			}
 		free_tokens(argv);
 		}
