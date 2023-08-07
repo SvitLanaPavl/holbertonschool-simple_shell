@@ -22,7 +22,7 @@ char **get_tokenize(char *lineptr)
 	if (flag == 0)
 		return (NULL);
 	ntoken = get_num_token(lineptr);
-	cmd_arr = malloc(sizeof(char *) * ntoken); /*allocate argv*/
+	cmd_arr = malloc(sizeof(char *) * (ntoken + 1)); /*allocate argv*/
 	if (cmd_arr == NULL)
 	{
 		free(cmd_arr);
@@ -31,7 +31,7 @@ char **get_tokenize(char *lineptr)
 	token = strtok(lineptr, delim); /*store token in argv*/
 	while (token)
 	{
-		cmd_arr[i] = malloc(sizeof(char) * strlen(token));
+		cmd_arr[i] = malloc(sizeof(char) * strlen(token) + 1);
 		if (cmd_arr[i] == NULL)
 		{
 			for (i--; i >= 0; i--)
