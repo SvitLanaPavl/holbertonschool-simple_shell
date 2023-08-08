@@ -2,10 +2,10 @@
 
 <img src='https://guideposts.org/wp-content/uploads/2017/04/blog_shell_1540-1024x576.jpg.webp' width="850" height="370" alt='simple-shell'/>
 
-## **_Introduction_** ##
+## **_Introduction_** ## 📢
 This program is the recreation of the UNIX shell - a command line interpreter - that allows a user to interact with a computer by running commands or programs. The shell parses the commands and sends them to the operating system to perform.
 
-## **_Description_** ##
+## **_Description_** ## ✍
 ### The shell should do the following: ###
 
 * Display a prompt and wait for the user to type a command. A command line always ends with a new line.
@@ -20,17 +20,17 @@ This program is the recreation of the UNIX shell - a command line interpreter - 
 * Implement the env built-in, that prints the current environment
 * Handles interactive and non-interactive mode
 
-## **_The flowchart of the Program_**
+## **_The flowchart of the Program_** ⚡
 <a href="https://ibb.co/JRjbKgr"><img src="https://i.ibb.co/DDf6tTw/Flowchart-simple-shell.jpg" alt="Flowchart-simple-shell" border="0"></a>
 
-## **_Implementation and Compilation_** ##
+## **_Implementation and Compilation_** ## 🛠
 To start using this program, first, clone the repository 
 `https://github.com/meisibley/holbertonschool-simple_shell.git`
 
 and compile in the following way
 `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
 
-## **_How to use_** ##
+## **_How to use_** ## 🔐
 In your terminal, type `./hsh` to run the program. You will see the prompt `($)` which indicates that it is ready to receive the command. 
 Currently, this simple shell handles the  *built-in* commands, for instance,
 
@@ -40,7 +40,7 @@ Currently, this simple shell handles the  *built-in* commands, for instance,
 
 They are run right away. However, if the commands are not built-ins, they are searched for in the `PATH` directory and then are executed. If the command is not found or the user does not have the permission to run it, there will be an error message.
 
-## **_Examples_** ##
+## **_Examples_** ## 🗃
 
 **Example 1**
 
@@ -81,44 +81,44 @@ _non-interactive mode_ will display the same output as the interactive one
 echo "/bin/ls" | ./hsh
 hsh main.c shell.c test_ls_25
 ```
-## **_List of library functions and system calls used_** ##
+## **_List of library functions and system calls used_** ## 📚
 
-`access()` - checks if a file or directory exists and is accessible;<br />
-`chdir()` - is used to change the current working directory of the process;<br />
-`execve()` - is used to execute a new program;<br />
-`exit()` - exits the shell;<br />
-`fork()` - is used to create a new process. The new process is called a child process, and the original process is called the parent process;<br />
-`free()` - is used to free the allocated memory;<br />
-`getcwd()` - gets the current working directory of the process;<br />
-`getline()` - reads a line of text from standard input;<br />
-`isatty()` - checks if a file descriptor refers to a terminal device;<br />
-`malloc()` - allocates memory on the heap;<br />
-`perror()` - prints an error message to standard error;<br />
-`printf()` - prints the formated output to standard output;<br />
-`signal()` - handles signals that can be sent to a process to interrupt or notify of an event;<br />
-`stat()` - gets the status of a file;<br />
-`strtok()` - parses the string;<br />
-`wait()` - waits for a child process to terminate;<br />
-`write()` -  is used to write data to a file descriptor;<br />
+* `access()` - checks if a file or directory exists and is accessible;<br />
+* `chdir()` - is used to change the current working directory of the process;<br />
+* `execve()` - is used to execute a new program;<br />
+* `exit()` - exits the shell;<br />
+* `fork()` - is used to create a new process. The new process is called a child process, and the original process is called the parent process;<br />
+* `free()` - is used to free the allocated memory;<br />
+* `getcwd()` - gets the current working directory of the process;<br />
+* `getline()` - reads a line of text from standard input;<br />
+* `isatty()` - checks if a file descriptor refers to a terminal device;<br />
+* `malloc()` - allocates memory on the heap;<br />
+* `perror()` - prints an error message to standard error;<br />
+* `printf()` - prints the formated output to standard output;<br />
+* `signal()` - handles signals that can be sent to a process to interrupt or notify of an event;<br />
+* `stat()` - gets the status of a file;<br />
+* `strtok()` - parses the string;<br />
+* `wait()` - waits for a child process to terminate;<br />
+* `write()` -  is used to write data to a file descriptor;<br />
 
-## **_List of custom functions_** ##
+## **_List of custom functions_** ## 🔨
 
-`void execmd(char **argv, char *actual_com)` - executes the command based on the path;<br />
-`char *get_location(char *command)` - gets the path of the command file;<br />
-`int get_num_token(char *lineptr)` - gets the number of tokens;<br />
-`void get_tokenize(char *lineptr)` - gets the input and parses it;<br />
-`void free_tokens(char **cmd_arr)` - frees the allocated memory for tokens;<br />
-`int space_handler(char *lineptr)` - takes care of spaces as input;<br />
-`char *_getenv(const char *name)` - searches the table of environment variable;<br />
-`void signal_handler(int signum)` - handles signal, making shell ignore CTRL-C;<br />
-`void print_err(char *command, char **argv)` - prints the error message;<br />
-`int builtins_handling(char **command)` - handles built-ins;<br />
-`void env_handler(void)` - handles environment;<br />
-`void cd_handler(char **command)` - handles the change of directory;<br />
-`void exit_handler(char **command)` - handles exit command;<br />
-`int permissions(char * command)` - checks the command for existance and permission to execute it;<br />
+* `void execmd(char **argv, char *actual_com)` - executes the command based on the path;<br />
+* `char *get_location(char *command)` - gets the path of the command file;<br />
+* `int get_num_token(char *lineptr)` - gets the number of tokens;<br />
+* `void get_tokenize(char *lineptr)` - gets the input and parses it;<br />
+* `void free_tokens(char **cmd_arr)` - frees the allocated memory for tokens;<br />
+* `int space_handler(char *lineptr)` - takes care of spaces as input;<br />
+* `char *_getenv(const char *name)` - searches the table of environment variable;<br />
+* `void signal_handler(int signum)` - handles signal, making shell ignore CTRL-C;<br />
+* `void print_err(char *command, char **argv)` - prints the error message;<br />
+* `int builtins_handling(char **command)` - handles built-ins;<br />
+* `void env_handler(void)` - handles environment;<br />
+* `void cd_handler(char **command)` - handles the change of directory;<br />
+* `void exit_handler(char **command)` - handles exit command;<br />
+* `int permissions(char * command)` - checks the command for existance and permission to execute it;<br />
 
-## **_Files and their descriptions_** ##
+## **_Files and their descriptions_** ## 📋
 
 | **Files** | **Descriptions** |
 | ----- | ----------- |
@@ -130,7 +130,7 @@ hsh main.c shell.c test_ls_25
 | builtins_handling.c | handles builtins - cd, env, exit |
 | permissions.c | checks the command for existance and permission to run it |
 
-## **_Authors_** ##
+## **_Authors_** ## ✏
 
 Mei Sibley <br />
 Svitlana Pavlovska
