@@ -83,40 +83,40 @@ hsh main.c shell.c test_ls_25
 ```
 ## **_List of library functions and system calls used_** ##
 
-`access()` - checks if a file or directory exists and is accessible;
-`chdir()` - is used to change the current working directory of the process;
-`execve()` - is used to execute a new program;
-`exit()` - exits the shell;
-`fork()` - is used to create a new process. The new process is called a child process, and the original process is called the parent process;
-`free()` - is used to free the allocated memory;
-`getcwd()` - gets the current working directory of the process;
-`getline()` - reads a line of text from standard input;
-`isatty()` - checks if a file descriptor refers to a terminal device;
-`malloc()` - allocates memory on the heap;
-`perror()` - prints an error message to standard error;
-`printf()` - prints the formated output to standard output;
-`signal()` - handles signals that can be sent to a process to interrupt or notify of an event;
-`stat()` - gets the status of a file;
-`strtok()` - parses the string;
-`wait()` - waits for a child process to terminate;
-`write()` -  is used to write data to a file descriptor;
+`access()` - checks if a file or directory exists and is accessible;<br />
+`chdir()` - is used to change the current working directory of the process;<br />
+`execve()` - is used to execute a new program;<br />
+`exit()` - exits the shell;<br />
+`fork()` - is used to create a new process. The new process is called a child process, and the original process is called the parent process;<br />
+`free()` - is used to free the allocated memory;<br />
+`getcwd()` - gets the current working directory of the process;<br />
+`getline()` - reads a line of text from standard input;<br />
+`isatty()` - checks if a file descriptor refers to a terminal device;<br />
+`malloc()` - allocates memory on the heap;<br />
+`perror()` - prints an error message to standard error;<br />
+`printf()` - prints the formated output to standard output;<br />
+`signal()` - handles signals that can be sent to a process to interrupt or notify of an event;<br />
+`stat()` - gets the status of a file;<br />
+`strtok()` - parses the string;<br />
+`wait()` - waits for a child process to terminate;<br />
+`write()` -  is used to write data to a file descriptor;<br />
 
 ## **_List of custom functions_** ##
 
-`void execmd(char **argv, char *actual_com)` - executes the command based on the path;
-`char *get_location(char *command)` - gets the path of the command file;
-`int get_num_token(char *lineptr)` - gets the number of tokens;
-`void get_tokenize(char *lineptr)` - gets the input and parses it;
-`void free_tokens(char **cmd_arr)` - frees the allocated memory for tokens;
-`int space_handler(char *lineptr)` - takes care of spaces as input:
-`char *_getenv(const char *name)` - searches the table of environment variable;
-`void signal_handler(int signum)` - handles signal, making shell ignore CTRL-C;
-`void print_err(char *command, char **argv)` - prints the error message;
-`int builtins_handling(char **command)` - handles built-ins;
-`void env_handler(void)` - handles environment;
-`void cd_handler(char **command)` - handles the change of directory;
-`void exit_handler(char **command)` - handles exit command;
-`int permissions(char * command)` - checks the command for existance and permission to execute it
+`void execmd(char **argv, char *actual_com)` - executes the command based on the path;<br />
+`char *get_location(char *command)` - gets the path of the command file;<br />
+`int get_num_token(char *lineptr)` - gets the number of tokens;<br />
+`void get_tokenize(char *lineptr)` - gets the input and parses it;<br />
+`void free_tokens(char **cmd_arr)` - frees the allocated memory for tokens;<br />
+`int space_handler(char *lineptr)` - takes care of spaces as input;<br />
+`char *_getenv(const char *name)` - searches the table of environment variable;<br />
+`void signal_handler(int signum)` - handles signal, making shell ignore CTRL-C;<br />
+`void print_err(char *command, char **argv)` - prints the error message;<br />
+`int builtins_handling(char **command)` - handles built-ins;<br />
+`void env_handler(void)` - handles environment;<br />
+`void cd_handler(char **command)` - handles the change of directory;<br />
+`void exit_handler(char **command)` - handles exit command;<br />
+`int permissions(char * command)` - checks the command for existance and permission to execute it;<br />
 
 ## **_Files and their descriptions_** ##
 
