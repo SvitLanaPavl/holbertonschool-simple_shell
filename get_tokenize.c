@@ -17,10 +17,7 @@ void get_tokenize(char *lineptr)
 	ntoken = get_num_token(lineptr);
 	cmd_arr = malloc(sizeof(char *) * (ntoken + 1)); /*allocate argv*/
 	if (cmd_arr == NULL)
-	{
-		free(cmd_arr);
 		return;
-	}
 	token = strtok(lineptr, delim); /*store token in argv*/
 	while (token)
 	{
@@ -30,9 +27,7 @@ void get_tokenize(char *lineptr)
 			free_tokens(cmd_arr);
 			return;
 		}
-		strcpy(cmd_arr[i], token);
-		token = strtok(NULL, delim);
-		i++;
+		strcpy(cmd_arr[i], token), token = strtok(NULL, delim), i++;
 	}
 	cmd_arr[i] = NULL;
 	if (cmd_arr && !builtins_handling(cmd_arr))
@@ -48,7 +43,6 @@ void get_tokenize(char *lineptr)
 		}
 	}
 	free_tokens(cmd_arr);
-	return;
 }
 /**
  * free_tokens - frees the allocated memory for tokens
