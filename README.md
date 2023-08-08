@@ -84,24 +84,23 @@ hsh main.c shell.c test_ls_25
 ## **_List of library functions and system calls used_** ##
 
 ```
-access()
-chdir()
-execve()
-exit()
-fork()
-free()
-getcwd()
-getline()
-getpid()
-isatty()
-malloc()
-perror()
-printf()
-signal()
-stat()
-strtok()
-wait()
-write()
+access() - checks if a file or directory exists and is accessible;
+chdir() - is used to change the current working directory of the process;
+execve() - is used to execute a new program;
+exit() - exits the shell;
+fork() - is used to create a new process. The new process is called a child process, and the original process is called the parent process;
+free() - is used to free the allocated memory;
+getcwd() - gets the current working directory of the process;
+getline() - reads a line of text from standard input;
+isatty() - checks if a file descriptor refers to a terminal device;
+malloc() - allocates memory on the heap;
+perror() - prints an error message to standard error;
+printf() - prints the formated output to standard output;
+signal() - handles signals that can be sent to a process to interrupt or notify of an event;
+stat() - gets the status of a file;
+strtok() - parses the string;
+wait() - waits for a child process to terminate;
+write() -  is used to write data to a file descriptor;
 ```
 ## **_List of custom functions_** ##
 ```
