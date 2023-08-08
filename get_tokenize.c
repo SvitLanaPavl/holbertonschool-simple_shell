@@ -47,7 +47,7 @@ void get_tokenize(char *lineptr)
 				wait(&status); /*parent process waits for child*/
 		}
 	}
-	free(actual_cmd), free_tokens(cmd_arr);
+	free_tokens(cmd_arr);
 	return;
 }
 /**
@@ -63,7 +63,9 @@ void free_tokens(char **cmd_arr)
 	if (cmd_arr == NULL)
 		return;
 	for (i = 0; cmd_arr[i] != NULL; i++)
+	{
 		free(cmd_arr[i]);
+	}
 	free(cmd_arr);
 }
 
