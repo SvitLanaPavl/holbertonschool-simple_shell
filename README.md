@@ -105,17 +105,20 @@ write()
 ```
 ## **_List of custom functions_** ##
 ```
-void execmd(char **argv, char *actual_com);
-char *get_location(char *command);
-int get_num_token(char *lineptr);
-char **get_tokenize(ssize_t nchars_read, char *lineptr);
-char *_getenv(const char *name);
-void signal_handler(int signum);
-void print_err(char *command, char **argv);
-int builtins_handling(char **command);
-void env_handler(void);
-void cd_handler(char **command);
-void exit_handler(char **command);
+void execmd(char **argv, char *actual_com) - executes the command based on the path;
+char *get_location(char *command) - gets the path of the command file;
+int get_num_token(char *lineptr) - gets the number of tokens;
+void get_tokenize(char *lineptr) - gets the input and parses it;
+void free_tokens(char **cmd_arr) - frees the allocated memory for tokens;
+int space_handler(char *lineptr) - takes care of spaces as input:
+char *_getenv(const char *name) - searches the table of environment variable;
+void signal_handler(int signum) - handles signal, making shell ignore CTRL-C;
+void print_err(char *command, char **argv) - prints the error message;
+int builtins_handling(char **command) - handles built-ins;
+void env_handler(void) - handles environment;
+void cd_handler(char **command) - handles the change of directory;
+void exit_handler(char **command) - handles exit command;
+int permissions(char * command) - checks the command for existance and permission to execute it
 ```
 ## **_Files and their descriptions_** ##
 
@@ -125,8 +128,9 @@ void exit_handler(char **command);
 | main.c | recreates a simple shell | 
 | shell.c | gets a command, finds a path to this command and executes it; prints an error message; searches the table of environment variables for an entry corresponding to the name|
 | signal_handler.c | handles the CTRL C signal to ignore it in this simple shell |
-| get_tokenize.c | gets the input and tokenizes it returning the character array |
+| get_tokenize.c | gets the input and tokenizes it returning the character array, frees the tokens, handles spaces |
 | builtins_handling.c | handles builtins - cd, env, exit |
+| permissions.c | checks the command for existance and permission to run it |
 
 ## **_Authors_** ##
 
