@@ -132,5 +132,5 @@ hsh main.c shell.c test_ls_25
 
 ## **_Authors_** ✏
 
-Mei Sibley <br />
-Svitlana Pavlovska
+**Mei Sibley** <br />
+**Svitlana Pavlovska** **|** [Github](https://github.com/SvitLanaPavl) **|** [LinkedIn](https://www.linkedin.com/in/svitlana-pavlovska-833b43184/) **|** [Email](mailto:lanapavlovska90@gmail.com) **|** [Portfolio](https://svitlanapavl.github.io/Portfolio/)
